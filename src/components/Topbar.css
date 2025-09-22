@@ -1,0 +1,77 @@
+.topbar {
+    display: flex;
+    align-items: center;
+    background-color:  var(--primer-color);
+    
+    color: #fff;
+    padding: 10px 20px;
+    justify-content: space-between;
+  }
+  
+.perfil nav a{
+  padding: 5px;
+  text-decoration: none;
+  /* background-color: rgb(85, 85, 23); */
+  /* background-color: rgb(204, 204, 74);  */
+}
+
+.perfil nav a:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(3, 3, 2); 
+  border-radius: 10px;
+}
+
+  .user-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-size: 16px;
+  }
+  
+  .boton-transparente{
+    background-color: transparent;
+    border: none;
+    color: white;
+  }
+
+  .container-responsivo {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  @media (min-width: 640px) {
+    .container-responsivo {
+      max-width: 640px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container-responsivo {
+      max-width: 768px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container-responsivo {
+      max-width: 1024px;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container-responsivo {
+      max-width: 1280px;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container-responsivo {
+      max-width: 1536px;
+    }
+  }

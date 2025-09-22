@@ -1,0 +1,30 @@
+.permisos-container {
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+  margin: 20px;
+  border: 2px solid rgb(134, 133, 133);
+  max-height: 50vh;
+  overflow-y: auto; 
+}
+
+.modulo {
+  margin-bottom: 15px;
+}
+
+.modulo-nombre {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.permisos-lista {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.permiso {
+  margin: 3px 0;
+  color: #444;
+}
+

@@ -1,0 +1,30 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+  .sistema {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .main-layout {
+    display: flex;
+    flex: 1;
+  }
+  
+  .content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f9f9f9;
+  }
+  

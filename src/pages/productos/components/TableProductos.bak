@@ -1,0 +1,155 @@
+import { useReactTable,getCoreRowModel,flexRender,getPaginationRowModel,getSortedRowModel,getFilteredRowModel } from "@tanstack/react-table"
+import dayjs from "dayjs"
+import { useContext, useState } from "react"
+import { ProductosContext } from "../context/ProductosContext"
+import axios from "axios"
+
+
+const TableProductos = () => {
+    const {productos,setProductos,setMuestraProducto,setEditaProducto}= useContext(ProductosContext)
+
+    const [sorting, setSorting] = useState([])
+    const [filtering, setFiltering] = useState('')
+    const [pagina, setPagina] = useState(0)
+
+    const handleButtonClick = (producto) => {
+        setMuestraProducto(producto);
+    }; 
+
+    const handleButtonEditaProducto = (producto) => {
+        setEditaProducto(producto);
+    };
+
+    const handleBorrarProducto = async(producto)=>{
+      const confirmar = confirm('Deseas eliminar el producto?')
+      if (confirmar){
+          try {
+              await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/productos/${producto.id}`)
+              setProductos(productos.filter(tProducto=>tProducto.id !== producto.id))
+          }
+          catch(error){
+              console.log(error.response.data.msg)
+          }
+      }  
+    }
+    
+    const columns = [
+        {header:"ID",accessorKey:"id"},
+        {header:"Nombre",accessorKey:"nombre"},
+        {header:"CODIGO",accessorKey:"codigo"},
+        {header: 'Imagen',accessorKey: 'image',
+          cell: ({ row }) => (
+              <img
+                src={`${row.original.foto}.jpg`}
+                alt={row.original.nombre}
+                style={{ width: 30, height:30, 
+                         borderRadius: '50%', objectFit:'cover',
+                         margin:0, padding:0, verticalAlign:'middle',
+                         lineHeight:0,
+                         display:"inline-block"}}
+              />),
+        },
+        {header:"Existencias",accessorKey:"existencias"},
+        {header:"Precio",accessorKey:"Precio",
+            cell: ({ getValue }) => <div className="precio">{`$${Number(getValue()).toFixed(2)}`}</div>
+
+        },
+        {header: 'Actions',id: 'details',
+          cell: ({ row }) => (
+            <>
+            <button onClick={() => handleButtonClick(row.original)}>💡</button>
+            <button onClick={() => handleButtonEditaProducto(row.original)}>✎</button>
+            <button onClick={() => handleBorrarProducto(row.original)}>🗑️</button>
+            </>
+          ),
+        },
+    ]
+
+    const table= useReactTable({
+                                data:productos,
+                                columns,
+                                getCoreRowModel:getCoreRowModel(),
+                                getPaginationRowModel:getPaginationRowModel(),
+                                getSortedRowModel:getSortedRowModel(),
+                                getFilteredRowModel:getFilteredRowModel(),
+                                state:{
+                                  sorting,
+                                  globalFilter:filtering
+                                },
+                                onSortingChange:setSorting,
+                                onGlobalFilterChange:setFiltering,
+                              })
+
+  return (
+    <div>
+        <label >Buscar:</label>
+        <input 
+            type="text"
+            value={filtering}
+            onChange={e=> setFiltering(e.target.value)} />
+        <table>
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => (
+                    <th key={header.id}
+                      onClick={header.column.getToggleSortingHandler()    }
+                    >
+                    {
+                      <div>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                          )}
+                          {
+                            {asc:"⬆️",desc:"⬇️"}[
+                              header.column.getIsSorted() ?? null
+                            ]
+                          }
+                        </div>
+                      }
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody>
+                 {table.getRowModel().rows.map((row)=>(
+                    <tr 
+                      key={row.id}>
+                        {row.getVisibleCells().map((cell)=>(
+                             <td key={cell.id}>
+                                 {flexRender(cell.column.columnDef.cell,cell.getContext())}
+                            </td>
+                        ))}
+                    </tr>
+                  ))}  
+            </tbody>
+        </table>
+       {/* {table.setPageIndex(3)} */}
+        <div>
+            <button
+                  onClick={()=>table.setPageIndex(0)}>{'<<'}
+            </button>
+            <button
+                 onClick={() => table.previousPage()}
+                 disabled={!table.getCanPreviousPage()}
+               >
+                 {'<'}
+            </button>
+            <button
+                 onClick={() => table.nextPage()}
+                 disabled={!table.getCanNextPage()}
+               >
+                 {'>'}
+            </button>
+            <button
+              onClick={()=>table.setPageIndex(table.getPageCount()-1)}>{'>>'}
+            </button>
+    
+        </div>
+    </div>
+  )
+}
+
+export default TableProductos

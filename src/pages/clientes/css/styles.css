@@ -1,0 +1,128 @@
+*{
+    padding: 0;
+    margin: 0;
+  }
+  
+  .clientesPagina{
+    background-color: rgb(78, 83, 81);
+  }
+
+  button{
+    padding: 5px 8px;
+  }
+  
+  .tarjeta{
+    /* background-color:  #5c6576; */
+    background-color:  var(--segundo-color);
+    color: white;
+    width: 300px;
+    margin: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    display: inline;
+  }
+  .formulario{
+    background-color: hsla(208, 59%, 54%, 0.918);
+    width: 300px;
+    margin: 18px;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .formulario label{
+    display: block;
+  }
+  
+  .formulario input{
+    margin-bottom: 5px;
+    width: 100%;
+  }
+  .contenedor{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .botonesTarjeta{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  /*=============== VARIABLES CSS ===============*/
+  :root {
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    /* --first-color: hsl(245, 95%, 58%); */
+    --first-color-alt: hsl(197, 85%, 52%);
+    --white-color: hsl(0, 0%, 100%);
+    --body-color: hsl(208, 60%, 49%);
+  
+  
+    /*========== z index ==========*/
+    --z-normal: 1;
+    --z-modal: 1000;
+  }
+  
+  
+  /*=============== BASE ===============*/
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* background-color: yellow;  */
+  }
+  
+  
+  /*=============== POPUP MODAL ===============*/
+  
+  .modal {
+    position: fixed;
+    inset: 0;
+    background-color: hsla(5, 90%, 4%, .2);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(24px);
+    display: grid;
+    place-items: center;
+    padding: 2rem 1.5rem;
+    z-index: var(--z-modal);
+    transition: opacity .4s, visibility .4s;
+  }
+  
+  .oculta-modal {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  .modal__card {
+    position: relative;
+    background-color: var(--body-color);
+    padding: 1rem 1.25rem 1rem;
+    row-gap: 1.5rem;
+    transform: rotateX(90deg);
+    transition: transform .6s;
+    border-radius: 15px;
+    display: block;
+    border: 1px solid black;
+  }
+  
+  .modal__card label{
+      margin-top: 15px;
+  }
+  
+  .modal__card input{
+      width: 100%;
+      font-size: medium;
+  }
+  
+  /* Active modal */
+  .active-modal {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: initial;
+  }
+  
+  .active-modal .modal__card {
+    transform: rotateX(0);
+  }
+  

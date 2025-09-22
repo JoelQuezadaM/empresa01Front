@@ -1,0 +1,69 @@
+:root {
+    /* --primer-color: #b4b1b1; */
+    --primer-color:  #434a58;
+    --segundo-color: #5c6576;
+    --tercer-color:  #92959a;
+  }
+  
+   
+  /* a {
+    text-decoration: none;
+    color: var(--second-color);
+  } */
+
+body.login {
+    background-image: url('/login.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+
+  body.fondo2 {
+     background-image: url('/sistema.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: aliceblue; 
+  }
+
+  /* ////tablas/////// */
+   
+  table{
+      border-collapse: collapse;
+      border-spacing: 0;
+      padding: 0;
+      width: 100%;
+      border: 1px solid #180c0c;
+      border-radius: 10px;
+      overflow: hidden; /* Para que el contenido no sobresalga */
+  }
+  
+  th,td{
+       text-align: left;
+       padding: 7px;
+    }
+      
+  tr:nth-child(even){
+    background: var(--tercer-color);
+    /* color:white; */
+  }
+      
+  tr:hover{
+    background: #373837;
+    
+    color: white;
+  }
+      
+  th {
+    /* background-color: rgb(101, 104, 104); */
+    background-color:  #434a58;
+    color: white;
+    padding: 10px; /* Mantenemos padding en el encabezado si es necesario */
+  }
+  
+  form input{
+    display: block;
+    width: 100%;
+  }

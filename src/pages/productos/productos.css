@@ -1,0 +1,106 @@
+  
+  .fondo-principal{
+    background-color:  #eaeced;
+    width: 100%;
+  }
+  .contenedorProductos{
+      display: flex;
+      justify-content: space-between;
+  }
+ 
+  /* Estilos generales del popup */
+  .popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 300; /* Asegura que esté por encima de otros elementos */
+  
+  }
+  
+  .popup-segundo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 500; /* Asegura que esté por encima de otros elementos */
+  
+  }
+
+  /* Estilos del contenido del popup */
+  /*Opción 2: Limitar altura máxima y dejar que crezca*/
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  max-height: 80vh; /* 👈 90% del alto visible */
+  overflow-y: auto; /* 👈 Scroll si se pasa */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Opción 1: Establecer una altura fija (fácil y controlado)
+Agrega la siguiente propiedad dentro de .popup-content:
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 350px;
+  height: 600px; // 👈 Aumenta o ajusta aquí 
+  overflow-y: auto; // 👈 Para que tenga scroll si se llena /
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+
+  .popup-content h2{
+    text-align: center;
+  }
+  
+  .popup-content img{
+    display: block;
+    margin: auto;
+  }
+
+  .popup-content2 {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    /* text-align: center; */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra alrededor */
+    
+  }
+  
+  
+  /* Botón de cierre */
+  .popup-content button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 10px;
+  }
+  
+  .popup-content button:hover {
+    background-color: #0056b3; /* Color al pasar el cursor */
+  }
+  
+  .precio {
+    text-align: right;
+    /* background-color: yellow; */
+    width: 80px;
+  }
