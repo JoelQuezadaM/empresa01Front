@@ -28,6 +28,7 @@ const Login = () => {
     const handleSubmit = async(e) =>{
         e.preventDefault();
         alert('antes de buscar')
+        alert( `${import.meta.env.VITE_BACKEND_URL}/api/`)
         if ([email,password].includes('')){
             alert('Todos los campos son obligatorios')
             return
@@ -53,7 +54,7 @@ const Login = () => {
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.1</span>
+                <span>Bienvenido 0.2</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">
