@@ -37,7 +37,7 @@ const Login = () => {
             alert('antes del login')
             alert(`email:${email} password:${password}`)
             // const {data}= await clienteAxios.post('/usuarios/login',{email,password})
-            const {data}= await axios.post('${import.meta.env.VITE_BACKEND_URL}/api/usuarios/login',{email,password})
+            const {data}= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/login`,{email,password})
             alert('despues del axios')
             localStorage.setItem('Pt_01',data.token)
             const permisosTransformados=transformarPermisos(data.derechos)
@@ -57,7 +57,7 @@ const Login = () => {
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.5</span>
+                <span>Bienvenido 0.5b</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">
