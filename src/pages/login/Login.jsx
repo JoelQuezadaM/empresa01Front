@@ -27,7 +27,7 @@ const Login = () => {
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
-        
+        alert('antes de buscar')
         if ([email,password].includes('')){
             alert('Todos los campos son obligatorios')
             return
