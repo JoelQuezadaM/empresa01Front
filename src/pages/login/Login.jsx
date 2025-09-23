@@ -35,7 +35,7 @@ const Login = () => {
         }
         try {
             alert('antes del login')
-
+            alert(`email:${email} password:${email}`)
             const {data}= await clienteAxios.post('/usuarios/login',{email,password})
             localStorage.setItem('Pt_01',data.token)
 
@@ -56,7 +56,7 @@ const Login = () => {
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.3</span>
+                <span>Bienvenido 0.4</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">
