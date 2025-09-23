@@ -4,6 +4,8 @@ import useAuth from '../../hooks/useAuth'
 import { clienteAxios } from '../../config/axios'
 import { useNavigate } from 'react-router-dom'
 import 'boxicons/css/boxicons.min.css';
+import axios from 'axios'
+
 
 
 const Login = () => {
@@ -27,18 +29,17 @@ const Login = () => {
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
-        alert('antes de buscar')
-        alert( `${import.meta.env.VITE_BACKEND_URL}/api/`)
         if ([email,password].includes('')){
             alert('Todos los campos son obligatorios')
             return
         }
         try {
             alert('antes del login')
-            alert(`email:${email} password:${email}`)
-            const {data}= await clienteAxios.post('/usuarios/login',{email,password})
+            alert(`email:${email} password:${password}`)
+            // const {data}= await clienteAxios.post('/usuarios/login',{email,password})
+            const {data}= await axios.post('${import.meta.env.VITE_BACKEND_URL}/api/usuarios/login',{email,password})
+            alert('despues del axios')
             localStorage.setItem('Pt_01',data.token)
-
             const permisosTransformados=transformarPermisos(data.derechos)
              console.log('permisosTransformados')
              console.log(permisosTransformados)
@@ -56,7 +57,7 @@ const Login = () => {
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.4</span>
+                <span>Bienvenido 0.5</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">
