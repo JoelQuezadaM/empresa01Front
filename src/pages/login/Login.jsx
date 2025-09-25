@@ -57,7 +57,7 @@ const Login = () => {
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.5b</span>
+                <span>Bienvenido 0.5c</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">
