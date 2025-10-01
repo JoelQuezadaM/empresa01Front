@@ -13,19 +13,8 @@ const Login = () => {
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate()
-    const {setAuth,setPermisos,transformarPermisos}=useAuth()
+    const {setAuth,setPermisos,transformarPermisos, loading, setLoading}=useAuth()
 
-    // function transformarPermisos(data) {
-    //     return data.reduce((acc, { nombreModulo, permiso }) => {
-    //         if (!acc[nombreModulo]) {
-    //         acc[nombreModulo] = [];
-    //         }
-    //         if (!acc[nombreModulo].includes(permiso)) {
-    //         acc[nombreModulo].push(permiso);
-    //         }
-    //         return acc;
-    //     }, {});
-    // }
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -34,30 +23,30 @@ const Login = () => {
             return
         }
         try {
-            // alert('antes del login')
-            // alert(`email:${email} password:${password}`)
-            // const {data}= await clienteAxios.post('/usuarios/login',{email,password})
+            setLoading(true)
+
             const {data}= await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/usuarios/login`,{email,password})
-            // alert('despues del axios')
             localStorage.setItem('Pt_01',data.token)
             const permisosTransformados=transformarPermisos(data.derechos)
-             console.log('permisosTransformados')
-             console.log(permisosTransformados)
 
             ///almacenamos localmente los permisos
             localStorage.setItem('Permisos',JSON.stringify(permisosTransformados))            
             setAuth(data)
             setPermisos(permisosTransformados)
+
             navigate('/sistema')
         } catch (error) {
-            alert(error.response.data.msg)
+            console.error(error)
+            const msg = err.response?.data?.msg || "Error en el servidor"
+            alert(msg)   // 👈 aquí mostramos el error en popup
+            // alert(error.response?.data?.msg)
         }
     }
 
   return (
         <>
             <div className="login-header">
-                <span>Bienvenido 0.5c</span>
+                <span>Bienvenido 0.6</span>
             </div>
             <form onSubmit={handleSubmit}>
                 <div className="input_box">

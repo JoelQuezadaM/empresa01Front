@@ -11,6 +11,10 @@
     color: var(--second-color);
   } */
 
+body.waiting {
+  cursor: wait;
+}
+
 body.login {
     background-image: url('/login.jpg');
     background-position: center;

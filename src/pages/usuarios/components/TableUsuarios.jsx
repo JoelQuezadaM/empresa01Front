@@ -111,14 +111,7 @@ const TableUsuarios = () => {
         {header:"Confirmado",accessorKey:"confirmado"},
         {header:"Token",accessorKey:"token"},
         {header: 'Actions',id: 'details',
-          // cell: ({ row }) =>(
-          //   <>
-          //   <button onClick={() => handleMuestraUsuario(row.original)}>💡</button>
-          //   <button onClick={() => handleButtonEditaUsuario(row.original)}>✎</button> 
-          //   <button onClick={() => handleMuestraPermisos(row.original)}>🔍</button>
-          //   <button onClick={() => handleBorrarUsuario(row.original)}>🗑️</button>
-          //   </>
-          // ),
+          
           cell: ({ row }) => {
             const usuario = row.original;
             return (

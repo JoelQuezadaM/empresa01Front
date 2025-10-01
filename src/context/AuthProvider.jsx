@@ -5,9 +5,12 @@ const AuthContext = createContext()
 
 const AuthProvider = ({children}) =>{
 
-    const [cargando, setCargando] = useState(true)
+    const [cargando, setCargando] = useState(true)//cargando la aplicacion
     const [auth, setAuth] = useState({})
     const [permisos, setPermisos] = useState({})
+
+    // 👇 nuevos estados globales
+    const [loading, setLoading] = useState(false)//haciendo una consulta en la base de datos
 
     const transformarPermisos=(data)=> {
         return data.reduce((acc, { nombreModulo, permiso }) => {
@@ -26,6 +29,7 @@ const AuthProvider = ({children}) =>{
         const autenticarUsuario = async()=>{
             //Pt_01 es el nombre que se le asigna al token en el login
             const token = localStorage.getItem('Pt_01')
+            // alert(`token:${token}`)
             if (!token) {
                 setCargando(false)
                 return//si no existe el token no valida
@@ -37,14 +41,19 @@ const AuthProvider = ({children}) =>{
                 }
             }
             try {
+                setLoading(true)//cursor de guardando
                 const {data} = await  clienteAxios(`/usuarios/perfil`,config)
                 setPermisos(transformarPermisos(data.derechos))
                 setAuth(data.usuario)
             } catch (error) {
+                console.error(error)
+                alert("No se pudo autenticar el usuario")
                 setAuth({})
                 setPermisos({})
+            }finally{
+                setLoading(false)
+                setCargando(false)
             }
-            setCargando(false)
         }
         autenticarUsuario()
     }, [])
@@ -60,13 +69,11 @@ const AuthProvider = ({children}) =>{
     return(
         <AuthContext.Provider
             value={{
-                auth,
-                setAuth,
-                permisos,
-                setPermisos,
-                cargando,
-                cerrarSesion,
-                transformarPermisos
+                auth,setAuth,
+                permisos,setPermisos,
+                cargando,cerrarSesion,
+                transformarPermisos,
+                loading, setLoading
             }}>
             {children}
         </AuthContext.Provider>

@@ -17,12 +17,15 @@ const TableProductos = () => {
     const [busqueda, setBusqueda] = useState('');
     const [busquedaInput, setBusquedaInput] = useState('');
 
+    const [loading, setLoading] = useState(false)//haciendo una consulta en la base de datos
+
+
+
 
     const mostrarProductos = async()=>{
         try {
           const sort = sorting[0] || {}; // puede estar vacío
-          console.log('sort.desc')
-          console.log(sort.desc)
+          setLoading(true)
           const respuesta = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/productospag`, {
           params: {
             page: pagina,
@@ -35,6 +38,8 @@ const TableProductos = () => {
           setTotalPaginas(respuesta.data.totalPages)
         }catch(error){
           console.log(error)
+        }finally{
+          setLoading(false)
         }
     }
     useEffect(() => {
