@@ -24,7 +24,7 @@ body.login {
   }
 
   body.fondo2 {
-     background-image: url('/sistema.jpg');
+     /* background-image: url('/sistema.jpg'); */
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;

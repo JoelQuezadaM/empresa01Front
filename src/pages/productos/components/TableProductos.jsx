@@ -20,7 +20,14 @@ const TableProductos = () => {
     const [loading, setLoading] = useState(false)//haciendo una consulta en la base de datos
 
 
-
+    useEffect(() => {
+      if (loading) {
+        document.body.style.cursor = "wait";
+        console.log('entro al wait')
+      } else {
+        document.body.style.cursor = "default";
+      }
+    }, [loading]);
 
     const mostrarProductos = async()=>{
         try {
