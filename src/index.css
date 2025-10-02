@@ -11,8 +11,8 @@
     color: var(--second-color);
   } */
 
-body.waiting {
-  cursor: wait;
+body.waiting, body.waiting * {
+  cursor: wait !important;
 }
 
 body.login {

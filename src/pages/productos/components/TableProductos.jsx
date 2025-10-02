@@ -5,6 +5,7 @@ import { ProductosContext } from "../context/ProductosContext"
 import axios from "axios"
 
 
+
 const TableProductos = () => {
     const {productos,setProductos,setMuestraProducto,setEditaProducto}= useContext(ProductosContext)
 
@@ -21,13 +22,13 @@ const TableProductos = () => {
 
 
     useEffect(() => {
-      if (loading) {
-        document.body.style.cursor = "wait";
-        console.log('entro al wait')
-      } else {
-        document.body.style.cursor = "default";
-      }
-    }, [loading]);
+    if (loading) {
+      document.body.classList.add("waiting");
+      console.log('entrando loading')
+    } else {
+      document.body.classList.remove("waiting");
+    }
+  }, [loading]);
 
     const mostrarProductos = async()=>{
         try {
@@ -140,7 +141,14 @@ const TableProductos = () => {
                               })
 
   return (
-    <div>
+    <div 
+        // className="waiting"
+        // style={{
+        // cursor: 'wait', // Cambia el cursor a una mano para enlaces
+        // Para una imagen personalizada:
+        // cursor: 'url("ruta/a/tu/cursor.png"), auto',
+      // }}
+          >
         <label >Buscar:</label>
         <input 
             type="text"
