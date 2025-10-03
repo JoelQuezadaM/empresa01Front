@@ -55,11 +55,8 @@ const TableProductos = () => {
     }, [pagina, busqueda,sorting]);
 
     useEffect(() => {
-      const timeout = setTimeout(() => {
         setBusqueda(busquedaInput);
         setPagina(1); // reinicia a la página 1 al buscar
-      }, 500); // debounce de 500ms
-      return () => clearTimeout(timeout);
     }, [busquedaInput]);
 
     const handleMuestraProducto = (producto) => {

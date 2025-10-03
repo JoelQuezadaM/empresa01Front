@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import "./login.css"
 import useAuth from '../../hooks/useAuth'
 import { clienteAxios } from '../../config/axios'
 import { useNavigate } from 'react-router-dom'
 import 'boxicons/css/boxicons.min.css';
 import axios from 'axios'
-
 
 
 const Login = () => {
@@ -15,6 +14,14 @@ const Login = () => {
     const navigate = useNavigate()
     const {setAuth,setPermisos,transformarPermisos, loading, setLoading}=useAuth()
 
+    useEffect(() => {
+        if (loading) {
+          document.body.classList.add("waiting");
+          console.log('entrando loading')
+        } else {
+          document.body.classList.remove("waiting");
+        }
+    }, [loading]);
 
     const handleSubmit = async(e) =>{
         e.preventDefault();
@@ -40,6 +47,9 @@ const Login = () => {
             const msg = err.response?.data?.msg || "Error en el servidor"
             alert(msg)   // 👈 aquí mostramos el error en popup
             // alert(error.response?.data?.msg)
+        }
+        finally{
+            setLoading(false)
         }
     }
 

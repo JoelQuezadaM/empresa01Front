@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext,  useState } from "react";
+import { createContext,  useEffect,  useState } from "react";
 
 
 export const ClienteContext = createContext()
@@ -11,6 +11,19 @@ export const ClienteContextProvider = (props)=>{
 
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isPopupClienteBuscarOpen, setIsPopupClienteBuscarOpen] = useState(false)
+
+    
+    const [loading, setLoading] = useState(false)//haciendo una consulta en la base de datos
+
+
+    useEffect(() => {
+    if (loading) {
+      document.body.classList.add("waiting");
+      console.log('entrando loading')
+    } else {
+      document.body.classList.remove("waiting");
+    }
+  }, [loading])
 
     const openPopup = () => setIsPopupOpen(true);
         ;
@@ -30,13 +43,16 @@ export const ClienteContextProvider = (props)=>{
 
     const asignandoSqlArreglo = async()=>{
       try {
-        console.log('entrando al asignando')
+        setLoading(true)
         const url = `${import.meta.env.VITE_BACKEND_URL}/api/clientes/mostrar`
+        
         const respuesta = await axios.get(url)
     
         setClientes(respuesta.data)
       } catch (error) {
         console.log(error)
+      }finally{
+        setLoading(false)
       }
     }
 
