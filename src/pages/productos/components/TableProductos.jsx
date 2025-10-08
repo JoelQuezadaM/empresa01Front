@@ -138,14 +138,7 @@ const TableProductos = () => {
                               })
 
   return (
-    <div 
-        // className="waiting"
-        // style={{
-        // cursor: 'wait', // Cambia el cursor a una mano para enlaces
-        // Para una imagen personalizada:
-        // cursor: 'url("ruta/a/tu/cursor.png"), auto',
-      // }}
-          >
+    <div>
         <label >Buscar:</label>
         <input 
             type="text"
@@ -156,6 +149,7 @@ const TableProductos = () => {
             onChange={(e) => setBusquedaInput(e.target.value)}
             style={{ padding: '0.5rem', width: '100%', marginBottom: '1rem' }}
             />
+        <div className="scroll-container">
         <table>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -195,6 +189,7 @@ const TableProductos = () => {
                   ))}  
             </tbody>
         </table>
+        </div>
         <div>
             <button
                   onClick={()=>setPagina(1)}

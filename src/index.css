@@ -71,3 +71,15 @@ body.login {
     display: block;
     width: 100%;
   }
+
+  /* estilo de tablas */
+ .scroll-container {
+   overflow-y: auto;
+   height: calc(100vh - 300px);
+  }
+  
+  .scroll-container-cards {
+    background-color: rgb(126, 133, 131);
+    overflow-y: auto;
+    height: calc(100vh - 200px);
+}

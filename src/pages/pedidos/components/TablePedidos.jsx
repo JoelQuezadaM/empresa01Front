@@ -92,6 +92,7 @@ const TablePedidos = () => {
             type="text"
             value={filtering}
             onChange={e=> setFiltering(e.target.value)} />
+        <div className="scroll-container">    
         <table>
             <thead>
               {table.getHeaderGroups().map((headerGroup) => (
@@ -129,7 +130,8 @@ const TablePedidos = () => {
                     </tr>
                   ))}  
             </tbody>
-        </table>
+       </table>
+       </div>
         <div>
             <button
                   onClick={()=>table.setPageIndex(0)}>{'<<'}

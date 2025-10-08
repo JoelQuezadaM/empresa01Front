@@ -7,6 +7,7 @@ const MuestraClientes = () => {
   const {clientes} = useContext(ClienteContext)
   return (
     <>
+    <div className="scroll-container-cards">
         <div className='contenedor'>
           {clientes.map(cliente=>(
             <Tarjeta 
@@ -14,6 +15,7 @@ const MuestraClientes = () => {
               cliente={cliente}
             />
           ))}
+        </div>
         </div>
     </>
   )

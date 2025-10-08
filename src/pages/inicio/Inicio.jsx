@@ -24,22 +24,21 @@ export default function Home() {
 
         <div className="card-grid">
           {/* Usuarios */}
-          <Link to="/sistema/usuarios" className="card card-usuarios">
-            <h3 className="usuarios">Usuarios</h3>
-            <p>Administra cuentas de usuarios.</p>
+          <Link to="/sistema/clientes" className="card">
+            <h3 className="clientes">Clientes</h3>
+            <p>Administra cuentas de clientes</p>
             </Link>
 
           {/* Productos */}
-          <div className="card">
+          <Link to="/sistema/productos" className="card">
             <h3 className="productos">Productos</h3>
             <p>Gestiona el catálogo de productos.</p>
-          </div>
-
+            </Link>
           {/* Ventas */}
-          <div className="card">
-            <h3 className="ventas">Ventas</h3>
-            <p>Consulta y registra ventas.</p>
-          </div>
+          <Link to="/sistema/pedidos" className="card">
+            <h3 className="pedidos">Pedidos</h3>
+            <p>Consulta y registra pedidos.</p>
+            </Link>
         </div>
       </main>
 

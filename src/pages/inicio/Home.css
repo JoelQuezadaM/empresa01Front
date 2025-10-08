@@ -45,17 +45,22 @@
 }
 
 .card {
-  background-color: white;
+  background-color: rgb(206, 203, 203);
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+    text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .card:hover {
   transform: translateY(-4px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
 }
 
 .card h3 {
@@ -63,19 +68,20 @@
   margin-bottom: 0.5rem;
 }
 
+
 .card p {
-  color: #666;
+  color: #8b3c3c;
 }
 
 .usuarios {
-  color: #2563eb; /* Azul */
+  color: #0440c1; /* Azul */
 }
 
 .productos {
-  color: #16a34a; /* Verde */
+  color: #1d9d4e; /* Verde */
 }
 
-.ventas {
+.clientes {
   color: #9333ea; /* Morado */
 }
 

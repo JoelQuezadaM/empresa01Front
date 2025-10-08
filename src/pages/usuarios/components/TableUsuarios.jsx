@@ -168,46 +168,47 @@ const TableUsuarios = () => {
             style={{ padding: '0.5rem', width: '100%', marginBottom: '1rem' }}
             />
               
-        <div style={{ overflowY: 'auto',height: "calc(100vh - 300px)" }}>
-        <table style={{ minWidth: '1200px', width: '100%' }}>
-            <thead>
-              {table.getHeaderGroups().map((headerGroup) => (
-                <tr key={headerGroup.id}>
-                  {headerGroup.headers.map((header) => (
-                    <th key={header.id}
-                      onClick={header.column.getToggleSortingHandler()    }
-                    >
-                    {
-                      <div>
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                          )}
-                          {
-                            {asc:"⬆️",desc:"⬇️"}[
-                              header.column.getIsSorted() ?? null
-                            ]
+        {/* <div style={{ overflowY: 'auto',height: "calc(100vh - 300px)" }}> */}
+        <div className="scroll-container">
+            <table style={{ minWidth: '1200px', width: '100%' }}>
+                <thead>
+                  {table.getHeaderGroups().map((headerGroup) => (
+                    <tr key={headerGroup.id}>
+                      {headerGroup.headers.map((header) => (
+                        <th key={header.id}
+                          onClick={header.column.getToggleSortingHandler()    }
+                        >
+                        {
+                          <div>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                              )}
+                              {
+                                {asc:"⬆️",desc:"⬇️"}[
+                                  header.column.getIsSorted() ?? null
+                                ]
+                              }
+                            </div>
                           }
-                        </div>
-                      }
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody>
-                 {table.getRowModel().rows.map((row)=>(
-                    <tr 
-                      key={row.id}>
-                        {row.getVisibleCells().map((cell)=>(
-                             <td key={cell.id}>
-                                 {flexRender(cell.column.columnDef.cell,cell.getContext())}
-                            </td>
-                        ))}
+                        </th>
+                      ))}
                     </tr>
-                  ))}  
-            </tbody>
-        </table>
+                  ))}
+                </thead>
+                <tbody>
+                    {table.getRowModel().rows.map((row)=>(
+                        <tr 
+                          key={row.id}>
+                            {row.getVisibleCells().map((cell)=>(
+                                <td key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell,cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                      ))}  
+                </tbody>
+            </table>
         </div>
         <div
         style={{

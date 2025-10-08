@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { clienteAxios } from "../config/axios";
+import { jwtDecode } from "jwt-decode";
+
 
 const AuthContext = createContext()
 
@@ -26,37 +28,59 @@ const AuthProvider = ({children}) =>{
 
 
     useEffect(() => {
-        const autenticarUsuario = async()=>{
-            //Pt_01 es el nombre que se le asigna al token en el login
-            const token = localStorage.getItem('Pt_01')
-            // alert(`token:${token}`)
-            if (!token) {
-                setCargando(false)
-                return//si no existe el token no valida
+        const autenticarUsuario = async () => {
+        const token = localStorage.getItem('Pt_01');
+        console.log('token')
+        console.log(token)
+        if (!token) {
+            console.log('entro a no existe token')
+            setCargando(false);
+        return;
+        }
+
+        try {
+            // 🧩 Decodificamos el token
+            const decoded = jwtDecode(token);
+            const now = Date.now() / 1000; // en segundos
+
+            if (decoded.exp && decoded.exp < now) {
+                console.log('si expiro')
+                console.warn("Token expirado, eliminando...");
+                localStorage.removeItem('Pt_01');
+                setCargando(false);
+                return;
             }
+            console.log('pasando si expiro')
+            setLoading(true);
+
             const config = {
-                headers:{
+                    headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`
-                }
-            }
-            try {
-                setLoading(true)//cursor de guardando
-                const {data} = await  clienteAxios(`/usuarios/perfil`,config)
-                setPermisos(transformarPermisos(data.derechos))
-                setAuth(data.usuario)
+                    }
+            };
+            console.log('antes del axios')
+            const { data } = await clienteAxios(`/usuarios/perfil`, config);
+            console.log('despues del axios')
+            setPermisos(transformarPermisos(data.derechos));
+            setAuth(data.usuario);
+
             } catch (error) {
-                console.error(error)
-                alert("No se pudo autenticar el usuario")
-                setAuth({})
-                setPermisos({})
-            }finally{
-                setLoading(false)
-                setCargando(false)
+            console.error(error);
+            if (token) {
+                alert("No se pudo autenticar el usuario");
             }
-        }
-        autenticarUsuario()
-    }, [])
+            localStorage.removeItem('Pt_01');
+            setAuth({});
+            setPermisos({});
+            } finally {
+            setLoading(false);
+            setCargando(false);
+            }
+        };
+
+        autenticarUsuario();
+    }, []);
     
     const cerrarSesion = () =>{
         localStorage.removeItem('Pt_01')

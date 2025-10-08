@@ -14,11 +14,6 @@ const Productos = () => {
   const {productos,setProductos, setEditaProducto} = useContext(ProductosContext)
 
 
-  
-  //para los popup son los 2 siguientes
-  // const [muestraProducto, setMuestraProducto] = useState(null)
-  // const [editaProducto, setEditaProducto] = useState(null)
-
   const insertarProducto = async (producto) =>{
     try{ 
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/productos`,producto)

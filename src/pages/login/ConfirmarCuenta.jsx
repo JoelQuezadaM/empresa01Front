@@ -16,7 +16,7 @@ const ConfirmarCuenta = () => {
     useEffect(()=>{
         const confirmar = async () =>{
            try{
-                console.log('entrando al try')
+                console.log('entrando al try de confirmar cuenta')
                 const url = `/usuarios/confirmar/${id}`
                 const {data}= await clienteAxios(url)
                 setCuentaConfirmada(true)
